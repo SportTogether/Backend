@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface UsersService  {
     public List<UsersDTO> getAllUsers();
+    public boolean findByEmailAndPassword (String email ,String password );
+
+    public boolean register(String email,String password ) ;
 }

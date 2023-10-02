@@ -31,4 +31,37 @@ public class UsersServiceImp implements UsersService {
         }
         return usersDTOS;
     }
+
+    @Override
+    public boolean findByEmailAndPassword(String email, String password) {
+        try
+        {
+            Users user = usersRepository.findByEmailAndPassword(email,password);
+
+            return user!=null ;
+        }catch (Exception e )
+        {
+            System.out.println("Error in findByEmailAndPassword method (UserService) : "+e.getMessage());
+            return false ;
+        }
+
+    }
+
+    @Override
+    public boolean register(String email, String password) {
+        Users user = usersRepository.findByEmail(email);
+        if (user ==null)
+        {
+            Users newUser = new Users();
+            newUser.setEmail(email);
+            newUser.setPassword(password);
+
+            usersRepository.save(newUser);
+            return true ;
+        }else
+        {
+            System.out.println("Email has been registered !!!");
+            return false ;
+        }
+    }
 }
