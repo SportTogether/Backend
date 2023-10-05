@@ -1,6 +1,7 @@
 package com.sportTogether.SportTogether.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "stars")
 public class Stars {
@@ -12,6 +13,16 @@ public class Stars {
     @Column
     private int quantities ;
 
+    @OneToMany(mappedBy = "stars")
+    private Set<Yards> listYards;
+
+    public Set<Yards> getListYards() {
+        return listYards;
+    }
+
+    public void setListYards(Set<Yards> listYards) {
+        this.listYards = listYards;
+    }
 
     public int getId() {
         return id;
