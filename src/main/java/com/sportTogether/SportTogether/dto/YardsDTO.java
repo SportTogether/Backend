@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 public class YardsDTO {
+    private int id ;
 
     private String name ;
 
@@ -20,16 +21,36 @@ public class YardsDTO {
 
     private int  stars ;
 
+    private String type ;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public YardsDTO() {
     }
 
-    public YardsDTO(String name, String address, String description, int price, double distance, int stars) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public YardsDTO(int id , String name, String address, String description, int price, double distance, int stars, String type ) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.description = description;
         this.price = price;
         this.distance = distance;
         this.stars = stars;
+        this.type = type;
     }
 
     public String getName() {

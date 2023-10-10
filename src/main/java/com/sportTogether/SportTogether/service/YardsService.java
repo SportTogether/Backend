@@ -9,4 +9,8 @@ import java.util.List;
 public interface YardsService  {
     public YardsDTO getYardById (int id );
     public List<YardsDTO> getAllYards();
+
+    public List<YardsDTO> filterByType(String type);
+    public List<YardsDTO> filterByStars(int  type);
+
 }

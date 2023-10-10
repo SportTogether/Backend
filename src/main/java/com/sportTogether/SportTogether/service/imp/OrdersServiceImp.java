@@ -1,6 +1,7 @@
 package com.sportTogether.SportTogether.service.imp;
 
 import com.sportTogether.SportTogether.dto.OrdersDTO;
+import com.sportTogether.SportTogether.dto.OrdersRigsterDTO;
 import com.sportTogether.SportTogether.dto.UsersDTO;
 import com.sportTogether.SportTogether.entity.Orders;
 import com.sportTogether.SportTogether.entity.Status;
@@ -40,7 +41,7 @@ public class OrdersServiceImp implements OrdersService {
 
         List<Orders> orders = ordersRepository.findAllByUserId(id); //error here
 
-        System.out.println("size "+orders.size());
+        System.out.println("size " + orders.size());
         if (!orders.isEmpty()) {
             for (Orders order : orders) {
 
@@ -88,21 +89,34 @@ public class OrdersServiceImp implements OrdersService {
     }
 
     @Override
-    public boolean addNewOrder(int userId, int yardsId, int statusId, String startDate, String endDate) {
-            statusId = 1;
-            try {
-                Users user = usersRepository.findById(userId);
-                Yards yard = yardsRepository.findById(yardsId);
-                Status status = statusRepository.findById(statusId);
-                Orders order = new Orders(user,yard,status,startDate,endDate);
-                ordersRepository.save(order);
-                return true ;
-            }catch (Exception e )
-            {
-                System.out.println("Error in addNewOrder method (OrderServiceImp) " + e.getMessage());
-                return false ;
+    public boolean addNewOrder(OrdersRigsterDTO ordersRigsterDTO) {
+        int users_id = ordersRigsterDTO.getUsers_id();
+        int yards_id = ordersRigsterDTO.getYards_id();
+        int status_id = 1;
+        String start_date = ordersRigsterDTO.getStart_date();
+        String end_date = ordersRigsterDTO.getEnd_date();
 
+
+        try {
+            Users user = usersRepository.findById(users_id);
+            Yards yard = yardsRepository.findById(yards_id);
+            Status status = statusRepository.findById(status_id);
+            System.out.println("start date "+start_date);
+            System.out.println("end date "+end_date);
+            if (start_date ==null|| end_date ==null)
+            {
+                System.out.println("zo day ");
+                return false;
             }
+
+            Orders order = new Orders(user, yard, status, start_date, end_date);
+            ordersRepository.save(order);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error in addNewOrder method (OrderServiceImp) " + e.getMessage());
+            return false;
+
+        }
 
     }
 }

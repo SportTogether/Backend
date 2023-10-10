@@ -23,6 +23,17 @@ public class Yards {
     @JoinColumn(name = "stars_id")
     private Stars stars ;
 
+    @Column
+    private String type ;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @OneToMany(mappedBy = "yards")
     private Set<Orders> listOrders;
 
@@ -39,17 +50,7 @@ public class Yards {
     public Yards() {
     }
 
-
-    public Yards(int id, String name, String address, String description, int price, double distance) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.description = description;
-        this.price = price;
-        this.distance = distance;
-    }
-
-    public Yards(int id, String name, String address, String description, int price, double distance, Stars stars) {
+    public Yards(int id, String name, String address, String description, int price, double distance, Stars stars,String type ) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -57,6 +58,7 @@ public class Yards {
         this.price = price;
         this.distance = distance;
         this.stars = stars;
+        this.type = type;
     }
 
     public int getId() {

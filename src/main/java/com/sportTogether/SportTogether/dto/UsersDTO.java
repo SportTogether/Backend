@@ -14,15 +14,26 @@ public class UsersDTO {
 
     @NotBlank(message = "password cannot be blank")
     private String password ;
+    @NotBlank(message = "number cannot be blank")
+    private String number ;
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     public UsersDTO() {
     }
 
-    public UsersDTO(int id, String name, String email, String password) {
+    public UsersDTO(int id, String name, String email, String password,String number) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.number = number;
     }
 
     public int getId() {

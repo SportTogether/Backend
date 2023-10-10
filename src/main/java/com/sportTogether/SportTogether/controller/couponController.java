@@ -17,7 +17,7 @@ public class couponController {
     @Autowired
     CouponsService couponsService;
 
-    @GetMapping("/findById")
+    @GetMapping("/find/id")
     public ResponseEntity<?> findById (@RequestParam int id )
     {
         CouponsDTO data = couponsService.findById(id);
