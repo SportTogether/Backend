@@ -1,9 +1,6 @@
 package com.sportTogether.SportTogether.controller;
 
-import com.sportTogether.SportTogether.dto.CouponsDTO;
-import com.sportTogether.SportTogether.dto.OrdersDTO;
-import com.sportTogether.SportTogether.dto.OrdersRigsterDTO;
-import com.sportTogether.SportTogether.dto.UsersDTO;
+import com.sportTogether.SportTogether.dto.*;
 import com.sportTogether.SportTogether.payload.Response;
 import com.sportTogether.SportTogether.service.CouponsService;
 import com.sportTogether.SportTogether.service.OrdersService;
@@ -41,6 +38,28 @@ public class ordersController {
         response.setStatusCode(200);
         response.setData(data);
         response.setMessage((data) ?"Successfully":"Unsuccessfully");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/update/status_id")
+    public ResponseEntity<?> updateOrdersByStatusId(@RequestBody UpdateOrdersDTO updateOrdersDTO) {
+        int statusId = updateOrdersDTO.getStatus_id();
+        int users_id  = updateOrdersDTO.getUsers_id();
+        boolean data = ordersService.updateOrdersByStatusId(statusId,users_id);
+        String message = (data) ?"Successfully" : "Unsuccessfully";
+        Response response = new Response(200, message, data);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/find/lastId")
+    public ResponseEntity<?> findLastIdFromUsers_id(@RequestBody UsersDTO usersDTO) {
+        int users_id = usersDTO.getId();
+
+        int data = ordersService.findLastIdFromUsers_id(users_id);
+        String message = (data!=0) ?"Successfully" : "Unsuccessfully";
+        Response response = new Response(200, message, data);
+
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

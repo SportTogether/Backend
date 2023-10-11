@@ -1,6 +1,7 @@
 package com.sportTogether.SportTogether.dto;
 
 public class OrdersDTO {
+    private int id ;
     private String name ;
     private String email;
 
@@ -8,12 +9,20 @@ public class OrdersDTO {
     private String yardName ;
     private String startDate ;
 
-    private String status ;
+    private int  status ;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public OrdersDTO() {
     }
 
-    public OrdersDTO(String name, String email, String number, String yardName, String startDate, String status) {
+    public OrdersDTO(int id , String name, String email, String number, String yardName, String startDate, int  status) {
         this.name = name;
         this.email = email;
         this.number = number;
@@ -54,11 +63,11 @@ public class OrdersDTO {
         this.startDate = startDate;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int  status) {
         this.status = status;
     }
 

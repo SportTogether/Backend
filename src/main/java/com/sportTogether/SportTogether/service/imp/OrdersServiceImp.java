@@ -45,7 +45,8 @@ public class OrdersServiceImp implements OrdersService {
         if (!orders.isEmpty()) {
             for (Orders order : orders) {
 
-                String name, email, number, statusName, yardName, startTime;
+                String name, email, number, yardName, startTime;
+                int statusName =0;
                 //set User
                 try {
 
@@ -62,7 +63,7 @@ public class OrdersServiceImp implements OrdersService {
                 //set status
                 try {
                     Status status = order.getStatus();
-                    statusName = status.getName();
+                    statusName = status.getId();
                 } catch (Exception e) {
                     System.out.println("Error in getAllOrdersByUserId method (OrderServiceImp) " + e.getMessage());
                     return ordersDTOS;
@@ -78,7 +79,7 @@ public class OrdersServiceImp implements OrdersService {
                     System.out.println("Error in getAllOrdersByUserId method (OrderServiceImp) " + e.getMessage());
                     return ordersDTOS;
                 }
-                OrdersDTO ordersDTO = new OrdersDTO(name, email, number, yardName, startTime, statusName);
+                OrdersDTO ordersDTO = new OrdersDTO(0,name, email, number, yardName, startTime, statusName);
                 ordersDTOS.add(ordersDTO);
 
             }
@@ -118,5 +119,30 @@ public class OrdersServiceImp implements OrdersService {
 
         }
 
+    }
+
+    @Override
+    public boolean updateOrdersByStatusId(int status_id,int users_id) {
+        int orders_id = findLastIdFromUsers_id(users_id);
+        Orders orders = ordersRepository.findById(orders_id);
+        if (status_id==0)
+        {
+            return false;
+        }else
+        {
+            Status status = statusRepository.findById(status_id);
+            orders.setStatus(status);
+            ordersRepository.save(orders);
+            return true ;
+        }
+
+
+    }
+
+    @Override
+    public int findLastIdFromUsers_id(int users_id) {
+        Orders orders = ordersRepository.findTop1ByUsersIdOrderByIdDesc(users_id);
+
+        return orders.getId();
     }
 }

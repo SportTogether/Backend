@@ -2,6 +2,7 @@ package com.sportTogether.SportTogether.controller;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.sportTogether.SportTogether.dto.OrdersDTO;
 import com.sportTogether.SportTogether.dto.UsersDTO;
 import com.sportTogether.SportTogether.payload.Response;
 import com.sportTogether.SportTogether.service.UsersService;
@@ -46,7 +47,7 @@ public class userController {
         String email = registerObject.getEmail();
         String password= registerObject.getPassword();
         String name= registerObject.getName();
-        String number= registerObject.getName();
+        String number= registerObject.getNumber();
 
         boolean data = usersService.register(email,password,name,number);
         String message = (data) ?"Successfully" : "Unsuccessfully";
@@ -54,4 +55,6 @@ public class userController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
 }
