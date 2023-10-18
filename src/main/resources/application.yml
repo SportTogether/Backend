@@ -9,3 +9,6 @@ spring:
 
   jpa:
     database: mysql
+
+  test :
+    test:test
