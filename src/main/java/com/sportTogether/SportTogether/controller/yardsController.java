@@ -30,7 +30,7 @@ public class yardsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/filter/type")
+    @GetMapping("/type")
     public ResponseEntity<?> filterByType (@RequestParam String name )
     {
         List<YardsDTO> data = yardsService.filterByType(name);
@@ -41,7 +41,7 @@ public class yardsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/filter/stars")
+    @GetMapping("/stars")
     public ResponseEntity<?> filterByStars (@RequestParam int   name )
     {
         List<YardsDTO> data = yardsService.filterByStars(name);
