@@ -1,13 +1,24 @@
+# server:
+#   port: 8080
+
+# spring:
+#   datasource:
+#     url: jdbc:mysql://localhost:3306/sport_together
+#     username: root
+#     password: 1234
+
+#   jpa:
+#     database: mysql
+
+
 server:
   port: 8080
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/sport_together
+    url: jdbc:mysql://viaduct.proxy.rlwy.net:10296/sport_together
     username: root
-    password: 1234
+    password: faF433ec1FFFh2dd5F1hGeA53HcDb-g3
 
   jpa:
     database: mysql
-
-
