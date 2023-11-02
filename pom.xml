@@ -15,7 +15,8 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<start-class>com.lionmint.core.test.integration.apns.mock.MockAPNSServer</start-class>
+<!--		<start-class>com.lionmint.core.test.integration.apns.mock.MockAPNSServer</start-class>-->
+
 	</properties>
 	<dependencies>
 		<dependency>
