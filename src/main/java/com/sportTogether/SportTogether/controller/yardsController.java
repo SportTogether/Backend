@@ -30,7 +30,7 @@ public class yardsController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/type")
+    @PostMapping("/type")
     public ResponseEntity<?> filterByType (@RequestParam String name )
     {
         List<YardsDTO> data = yardsService.filterByType(name);
