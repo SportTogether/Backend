@@ -57,8 +57,9 @@ public class YardsServiceImp implements YardsService {
     }
 
     @Override
-    public List<YardsDTO> filterByType(String type) {
+    public List<YardsDTO> filterByType(String type ) {
         List<Yards>yards = yardsRepository.filterByType(type);
+        System.out.println("yards filter : "+yards.size());
         List<YardsDTO>yardsDTOS = new ArrayList<>();
         if (!yards.isEmpty())
         {
@@ -72,8 +73,9 @@ public class YardsServiceImp implements YardsService {
     }
 
     @Override
-    public List<YardsDTO> filterByStars(int type) {
-        List<Yards>yards = yardsRepository.filterByStars(type);
+    public List<YardsDTO> filterByAll(String type,int stars) {
+        List<Yards>yards = yardsRepository.filterByAll(type,stars);
+        System.out.println("enter filter all ");
         List<YardsDTO>yardsDTOS = new ArrayList<>();
         if (!yards.isEmpty())
         {

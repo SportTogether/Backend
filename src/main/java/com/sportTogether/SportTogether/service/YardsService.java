@@ -11,6 +11,6 @@ public interface YardsService  {
     public List<YardsDTO> getAllYards();
 
     public List<YardsDTO> filterByType(String type);
-    public List<YardsDTO> filterByStars(int  type);
+    public List<YardsDTO> filterByAll(String type ,int  stars);
 
 }
