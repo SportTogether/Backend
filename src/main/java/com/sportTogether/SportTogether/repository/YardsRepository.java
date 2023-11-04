@@ -12,9 +12,10 @@ import java.util.List;
 public interface YardsRepository extends JpaRepository<Yards,Integer> {
     public Yards findById(int id ) ;
 
-    @Query(value = "select y from yards y where y.type like concat('%',?1,'%') ")
-    public List<Yards> filterByType(String type ) ;
+    @Query(value = "select y from yards y where y.type like concat('%',?1,'%')   or y.stars.quantities = ?1")
+    public List<Yards> filterByType(String type) ;
 
-    @Query(value = "select y from yards y where y.stars.quantities = ?1")
-    public List<Yards> filterByStars(int  stars ) ;
+    @Query(value = "select y from yards y where y.type like concat('%',?1,'%')   and y.stars.quantities = ?2")
+    public List<Yards> filterByAll(String type, int  stars ) ;
 }
+//(y.type like concat('%',?1,'%') and  y.stars.quantities = ?2) or
