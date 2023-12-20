@@ -19,6 +19,18 @@ public class Users {
     @Column
     private String number ;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Roles roles;
+
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+    }
+
     @OneToMany(mappedBy = "users")
     private Set<Orders> listOrders;
 

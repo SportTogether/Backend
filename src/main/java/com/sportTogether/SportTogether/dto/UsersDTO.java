@@ -17,6 +17,16 @@ public class UsersDTO {
     @NotBlank(message = "number cannot be blank")
     private String number ;
 
+    private String role_name ;
+
+    public String getRole_name() {
+        return role_name;
+    }
+
+    public void setRole_name(String role_name) {
+        this.role_name = role_name;
+    }
+
     public String getNumber() {
         return number;
     }
