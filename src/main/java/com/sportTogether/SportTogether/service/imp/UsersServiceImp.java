@@ -47,6 +47,7 @@ public class UsersServiceImp implements UsersService {
                 usersDTO.setPassword(user.getPassword());
                 usersDTO.setNumber(user.getNumber());
                 usersDTO.setName(user.getName());
+                usersDTO.setRole_name(user.getRoles().getName());
             }
 
             return usersDTO ;
