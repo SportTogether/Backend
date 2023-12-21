@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/coupons")
 public class couponController {
@@ -25,6 +27,17 @@ public class couponController {
         response.setStatusCode(200);
         response.setData(data);
         response.setMessage((data != null) ?"Successfully":"Unsuccessfully");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> findAll ( )
+    {
+        List<CouponsDTO> data = couponsService.findAll();
+        Response response = new Response();
+        response.setStatusCode(200);
+        response.setData(data);
+        response.setMessage((!data.isEmpty()) ?"Successfully":"Unsuccessfully");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
