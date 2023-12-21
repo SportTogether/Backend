@@ -1,6 +1,7 @@
 package com.sportTogether.SportTogether.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "coupons")
 public class Coupons {
@@ -16,14 +17,29 @@ public class Coupons {
     @Column
     public String icon ;
 
+    @Column
+    public int discount ;
+
+    @OneToMany(mappedBy = "coupons")
+    private Set<Users_Coupons> listUserCoupon;
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
     public Coupons() {
     }
 
-    public Coupons(int id, String name, String description, String icon) {
+    public Coupons(int id, String name, String description, String icon,int discount) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.icon = icon;
+        this.discount = discount;
     }
 
     public int getId() {

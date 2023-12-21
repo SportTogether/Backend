@@ -34,7 +34,7 @@ public class loginController {
         String message = (data.getId()!=0) ?"Successfully" : "Unsuccessfully";
 //        System.out.println("data : "+data);
         Response response = new Response(200, message, data);
-
+        
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

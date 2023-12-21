@@ -11,16 +11,16 @@ public class CouponsDTO {
     public String description ;
 
 
-    public String icon ;
+    public int discount ;
 
     public CouponsDTO() {
     }
 
-    public CouponsDTO(int id, String name, String description, String icon) {
+    public CouponsDTO(int id, String name, String description, int discount) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.icon = icon;
+        this.discount = discount;
     }
 
     public int getId() {
@@ -47,11 +47,11 @@ public class CouponsDTO {
         this.description = description;
     }
 
-    public String getIcon() {
-        return icon;
+    public int getDiscount() {
+        return discount;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 }

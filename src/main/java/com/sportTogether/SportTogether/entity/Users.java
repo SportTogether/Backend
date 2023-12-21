@@ -23,6 +23,9 @@ public class Users {
     @JoinColumn(name = "role_id")
     private Roles roles;
 
+    @OneToMany(mappedBy = "users")
+    private Set<Users_Coupons> listUserCoupon;
+
     public Roles getRoles() {
         return roles;
     }
