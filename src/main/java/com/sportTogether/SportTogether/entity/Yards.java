@@ -19,6 +19,18 @@ public class Yards {
     private int price ;
     @Column
     private double distance ;
+
+    @Column
+    private String destination_id ;
+
+    public String getDestination_id() {
+        return destination_id;
+    }
+
+    public void setDestination_id(String destination_id) {
+        this.destination_id = destination_id;
+    }
+
     @ManyToOne
     @JoinColumn(name = "stars_id")
     private Stars stars ;
@@ -50,7 +62,7 @@ public class Yards {
     public Yards() {
     }
 
-    public Yards(int id, String name, String address, String description, int price, double distance, Stars stars,String type ) {
+    public Yards(int id, String name, String address, String description, int price, double distance, Stars stars,String type,String destination_id ) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -59,6 +71,7 @@ public class Yards {
         this.distance = distance;
         this.stars = stars;
         this.type = type;
+        this.destination_id = destination_id;
     }
 
     public int getId() {
