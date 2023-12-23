@@ -27,6 +27,7 @@ public class YardsServiceImp implements YardsService {
         yardsDTO.setPrice(yard.getPrice());
         yardsDTO.setStars(yard.getStars().getQuantities());
         yardsDTO.setType(yard.getType());
+        yardsDTO.setDestination_id(yard.getDestination_id());
         return yardsDTO;
     }
 
