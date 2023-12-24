@@ -19,7 +19,7 @@ public class yardsController {
     @Autowired
     YardsService yardsService;
 
-    @GetMapping("/find/id")
+    @PostMapping("/find")
     public ResponseEntity<?> findById (@RequestParam int id )
     {
         YardsDTO data = yardsService.getYardById(id);
