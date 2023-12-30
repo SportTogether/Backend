@@ -37,6 +37,9 @@ public class Users {
     @OneToMany(mappedBy = "users")
     private Set<Orders> listOrders;
 
+    @OneToMany(mappedBy = "users")
+    private Set<Users_Matches> listUserMatch;
+
 
     public Set<Orders> getListOrders() {
         return listOrders;
