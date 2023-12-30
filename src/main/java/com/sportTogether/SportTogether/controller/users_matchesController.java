@@ -31,7 +31,7 @@ public class users_matchesController {
     @PostMapping("/add")
     public ResponseEntity<?> addNewUserMatch(@RequestParam int users_id ,@RequestParam int matches_id )
     {
-        System.out.println("enter here");
+
         boolean data = usersMatchesService.addNewUserMatch(users_id,matches_id);
         Response response = new Response();
         response.setStatusCode(200);
@@ -40,4 +40,16 @@ public class users_matchesController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+
+    @PostMapping("/remove")
+    public ResponseEntity<?> removeUserMatch(@RequestParam int user_matchId )
+    {
+
+        boolean data = usersMatchesService.removeUserMatch(user_matchId);
+        Response response = new Response();
+        response.setStatusCode(200);
+        response.setData(data);
+        response.setMessage((data) ?"Successfully":"Unsuccessfully");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
