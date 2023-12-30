@@ -67,4 +67,25 @@ public class Users_MatchesServiceImp implements Users_MatchesService {
 
         }
     }
+
+    @Override
+    public boolean removeUserMatch(int user_matchId) {
+        Users_Matches usersMatches = usersMatchesRepository.findById(user_matchId);
+        if (usersMatches ==null) {
+            return false;
+        } else {
+
+            try {
+                System.out.println("Enter here");
+                usersMatchesRepository.removeById(user_matchId);
+                return true ;
+
+
+            } catch (Exception e) {
+                System.out.println("Error in Users_MatchesServiceImp : " + e.getMessage());
+                return false;
+            }
+
+        }
+    }
 }
