@@ -1,6 +1,7 @@
 package com.sportTogether.SportTogether.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "matches")
 public class Matches {
@@ -26,6 +27,8 @@ public class Matches {
     @Column
     private String icon ;
 
+    @OneToMany(mappedBy = "matches")
+    private Set<Users_Matches> listUserMatch;
     public Matches() {
 
     }
