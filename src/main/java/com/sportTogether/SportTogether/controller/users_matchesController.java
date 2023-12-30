@@ -42,10 +42,10 @@ public class users_matchesController {
 
 
     @PostMapping("/remove")
-    public ResponseEntity<?> removeUserMatch(@RequestParam int user_matchId )
+    public ResponseEntity<?> removeUserMatch(@RequestParam int users_id ,@RequestParam int matches_id )
     {
 
-        boolean data = usersMatchesService.removeUserMatch(user_matchId);
+        boolean data = usersMatchesService.removeUserMatch(users_id,matches_id);
         Response response = new Response();
         response.setStatusCode(200);
         response.setData(data);

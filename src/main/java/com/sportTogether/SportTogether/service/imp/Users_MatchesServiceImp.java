@@ -69,15 +69,17 @@ public class Users_MatchesServiceImp implements Users_MatchesService {
     }
 
     @Override
-    public boolean removeUserMatch(int user_matchId) {
-        Users_Matches usersMatches = usersMatchesRepository.findById(user_matchId);
-        if (usersMatches ==null) {
+    public boolean removeUserMatch(int users_id , int matches_id) {
+        boolean isExisted = isExistedUserInMatch(users_id, matches_id);
+        if (isExisted ==false) {
             return false;
         } else {
 
             try {
                 System.out.println("Enter here");
-                usersMatchesRepository.removeById(user_matchId);
+                Users users = usersRepository.findById(users_id);
+                Matches matches = matchesRepository.findById(matches_id);
+                usersMatchesRepository.removeUserMatch(users_id,matches_id);
                 return true ;
 
 
