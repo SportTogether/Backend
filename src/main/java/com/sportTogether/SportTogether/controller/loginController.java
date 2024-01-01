@@ -53,8 +53,8 @@ public class loginController {
         String password= registerObject.getPassword();
         String name= registerObject.getName();
         String number= registerObject.getNumber();
-
-        boolean data = usersService.register(email,password,name,number);
+        int roleId = 2;
+        boolean data = usersService.register(email,password,name,number,roleId);
         String message = (data) ?"Successfully" : "Unsuccessfully";
         Response response = new Response(200, message, data);
 

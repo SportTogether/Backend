@@ -8,5 +8,5 @@ public interface UsersService  {
     public List<UsersDTO> getAllUsers();
     public UsersDTO findByEmailAndPassword (String email ,String password );
 
-    public boolean register(String email,String password,String name,String number ) ;
+    public boolean register(String email,String password,String name,String number,int roleId ) ;
 }
