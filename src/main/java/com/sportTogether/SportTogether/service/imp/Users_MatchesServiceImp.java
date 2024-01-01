@@ -8,6 +8,7 @@ import com.sportTogether.SportTogether.entity.Users_Matches;
 import com.sportTogether.SportTogether.repository.MatchesRepository;
 import com.sportTogether.SportTogether.repository.UsersRepository;
 import com.sportTogether.SportTogether.repository.Users_MatchesRepository;
+import com.sportTogether.SportTogether.service.MatchesService;
 import com.sportTogether.SportTogether.service.Users_MatchesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,9 @@ public class Users_MatchesServiceImp implements Users_MatchesService {
 
     @Autowired
     Users_MatchesRepository usersMatchesRepository;
+
+    @Autowired
+    MatchesService matchesService;
 
     @Override
     public boolean isExistedUserInMatch(int user_id, int match_id) {
@@ -56,8 +60,14 @@ public class Users_MatchesServiceImp implements Users_MatchesService {
                 Users_Matches usersMatches = new Users_Matches();
                 usersMatches.setUsers(users);
                 usersMatches.setMatches(matches);
-                if (users != null && matches != null) {
+                int current = matchesRepository.findById(matches_id).getCurrent_quantities();
+                int max = matchesRepository.findById(matches_id).getMax_quantities();
+
+                if (users != null && matches != null && current <max && current >=0) {
                     usersMatchesRepository.save(usersMatches);
+                    MatchesDTO matchesDTO = new MatchesDTO( );
+                    matchesDTO.setId(matches_id);
+                    matchesService.addNewMatch(matchesDTO);
                     return true;
                 } else {
                     return false;
@@ -84,6 +94,9 @@ public class Users_MatchesServiceImp implements Users_MatchesService {
                 Users users = usersRepository.findById(users_id);
                 Matches matches = matchesRepository.findById(matches_id);
                 usersMatchesRepository.removeUserMatch(users_id,matches_id);
+                MatchesDTO matchesDTO = new MatchesDTO( );
+                matchesDTO.setId(matches_id);
+                matchesService.cancelMatch(matchesDTO);
                 return true ;
 
 
