@@ -1,7 +1,9 @@
 package com.sportTogether.SportTogether.service.imp;
 
 import com.sportTogether.SportTogether.dto.UsersDTO;
+import com.sportTogether.SportTogether.entity.Roles;
 import com.sportTogether.SportTogether.entity.Users;
+import com.sportTogether.SportTogether.repository.RolesRepository;
 import com.sportTogether.SportTogether.repository.UsersRepository;
 import com.sportTogether.SportTogether.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class UsersServiceImp implements UsersService {
 
     @Autowired
     UsersRepository usersRepository;
+
+    @Autowired
+    RolesRepository rolesRepository;
     @Override
     public List<UsersDTO> getAllUsers() {
         List<Users> users = usersRepository.findAll();
@@ -60,7 +65,7 @@ public class UsersServiceImp implements UsersService {
     }
 
     @Override
-    public boolean register(String email, String password,String name,String number ) {
+    public boolean register(String email, String password,String name,String number,int roleId  ) {
         Users user = usersRepository.findByEmail(email);
         if (user ==null)
         {
@@ -69,6 +74,8 @@ public class UsersServiceImp implements UsersService {
             newUser.setPassword(password);
             newUser.setName(name);
             newUser.setNumber(number);
+            Roles role = rolesRepository.findById(roleId);
+            newUser.setRoles(role);
             usersRepository.save(newUser);
             return true ;
         }else
