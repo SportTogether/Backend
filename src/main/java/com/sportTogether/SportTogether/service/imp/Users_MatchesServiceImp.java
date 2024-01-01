@@ -1,5 +1,6 @@
 package com.sportTogether.SportTogether.service.imp;
 
+import com.sportTogether.SportTogether.dto.MatchesDTO;
 import com.sportTogether.SportTogether.dto.Users_MatchesDTO;
 import com.sportTogether.SportTogether.entity.Matches;
 import com.sportTogether.SportTogether.entity.Users;
@@ -10,6 +11,9 @@ import com.sportTogether.SportTogether.repository.Users_MatchesRepository;
 import com.sportTogether.SportTogether.service.Users_MatchesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class Users_MatchesServiceImp implements Users_MatchesService {
@@ -88,6 +92,32 @@ public class Users_MatchesServiceImp implements Users_MatchesService {
                 return false;
             }
 
+        }
+    }
+
+    public List<MatchesDTO> findByUsers_Id(int user_id )
+    {
+        List <Matches> matches = usersMatchesRepository.findByUsers_Id(user_id);
+        if (matches !=null)
+        {
+            List<MatchesDTO> matchesDTOS = new ArrayList<>();
+            for (Matches match : matches
+                 ) {
+
+                MatchesDTO matchesDTO= new MatchesDTO();
+                matchesDTO.setName(match.getName());
+                matchesDTO.setTime(match.getTime());
+                matchesDTO.setIcon(match.getIcon());
+                matchesDTO.setId(match.getId());
+                matchesDTO.setAddress(match.getAddress());
+                matchesDTO.setCurrent_quantities(match.getCurrent_quantities());
+                matchesDTO.setMax_quantities(match.getMax_quantities());
+                matchesDTOS.add(matchesDTO);
+            }
+            return matchesDTOS;
+        }else
+        {
+            return new ArrayList<>();
         }
     }
 }

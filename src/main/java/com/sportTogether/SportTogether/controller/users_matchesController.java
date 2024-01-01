@@ -1,5 +1,6 @@
 package com.sportTogether.SportTogether.controller;
 
+import com.sportTogether.SportTogether.dto.MatchesDTO;
 import com.sportTogether.SportTogether.dto.YardsDTO;
 import com.sportTogether.SportTogether.payload.Response;
 import com.sportTogether.SportTogether.service.Users_MatchesService;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/users_matches")
@@ -25,6 +28,18 @@ public class users_matchesController {
         response.setStatusCode(200);
         response.setData(data);
         response.setMessage((data) ?"Successfully":"Unsuccessfully");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/list_match")
+    public ResponseEntity<?> findListMatchOfUser(@RequestParam int users_id  )
+    {
+
+        List<MatchesDTO> data = usersMatchesService.findByUsers_Id(users_id);
+        Response response = new Response();
+        response.setStatusCode(200);
+        response.setData(data);
+        response.setMessage((!data.isEmpty()) ?"Successfully":"Unsuccessfully");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
